@@ -18,26 +18,25 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
-     _loadUserData();
+    _loadUserData();
   }
 
- Future<List<Map<String, dynamic>?>> _loadUserData() async {
-  final prefs = await SharedPreferences.getInstance();
-  List<String> userList = prefs.getStringList('userList') ?? [];
+  Future<List<Map<String, dynamic>?>> _loadUserData() async {
+    final prefs = await SharedPreferences.getInstance();
+    List<String> userList = prefs.getStringList('userList') ?? [];
 
-  return userList
-      .map((user) {
-        try {
-          return json.decode(user) as Map<String, dynamic>?;
-        } catch (e) {
-          // Si hay un error al decodificar la cadena, retorna null
-          return null;
-        }
-      })
-      .where((user) => user != null) // Filtra los usuarios válidos
-      .toList();
-}
-
+    return userList
+        .map((user) {
+          try {
+            return json.decode(user) as Map<String, dynamic>?;
+          } catch (e) {
+            // Si hay un error al decodificar la cadena, retorna null
+            return null;
+          }
+        })
+        .where((user) => user != null) // Filtra los usuarios válidos
+        .toList();
+  }
 
   Future<void> _login() async {
     final userList = await _loadUserData();
@@ -48,7 +47,8 @@ class _LoginPageState extends State<LoginPage> {
 
     // Verificar si el usuario y la contraseña coinciden con algún usuario almacenado
     bool isValidUser = userList.any((userData) {
-      return userData!['usuario'] == enteredUsername && userData['contrasena'] == enteredPassword;
+      return userData!['usuario'] == enteredUsername &&
+          userData['contrasena'] == enteredPassword;
     });
 
     if (isValidUser) {
@@ -89,7 +89,6 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-
 
   @override
   Widget build(BuildContext context) {

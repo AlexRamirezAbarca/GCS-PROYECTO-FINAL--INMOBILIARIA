@@ -10,6 +10,6 @@ class AppRoutes{
   static Map<String, Widget Function(BuildContext)> routes ={
     '/loginPage' : (_) => const LoginPage(),
     '/registerPage' : (_) => const RegisterPage(),
-    '/homePage' : (_) => const HomeScreen(),
+    '/homePage' : (_) => const HomePage(),
   };
 }

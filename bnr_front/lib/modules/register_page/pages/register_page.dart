@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -147,7 +149,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   Future<void> _saveToLocalStorage() async {
     final prefs = await SharedPreferences.getInstance();
-    List<Map<String, String>> userList = prefs.getStringList('userList')?.map((user) => Map<String, String>.from(json.decode(user)))?.toList() ?? [];
+    List<Map<String, String>> userList = prefs.getStringList('userList')?.map((user) => Map<String, String>.from(json.decode(user))).toList() ?? [];
 
     Map<String, String> newUser = {
       'nombre': firstNameController.text,
